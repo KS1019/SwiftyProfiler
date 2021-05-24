@@ -1,6 +1,5 @@
 import XCTest
 import class Foundation.Bundle
-//@testable import SwiftyProfiler
 
 final class SwiftyProfilerTests: XCTestCase {
     func testExample() throws {
