@@ -1,32 +1,27 @@
 import XCTest
 import class Foundation.Bundle
+//@testable import SwiftyProfiler
 
 final class SwiftyProfilerTests: XCTestCase {
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-
-        // Some of the APIs that we use below are available in macOS 10.13 and above.
-        guard #available(macOS 10.13, *) else {
+        guard #available(macOS 10.11, *) else {
             return
         }
 
         let fooBinary = productsDirectory.appendingPathComponent("SwiftyProfiler")
-
         let process = Process()
         process.executableURL = fooBinary
-
+        
         let pipe = Pipe()
-        process.standardOutput = pipe
+        process.standardError = pipe
 
         try process.run()
         process.waitUntilExit()
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8)
+        let outputError = String(data: data, encoding: .utf8)!.replacingOccurrences(of: "\\s", with: "", options: .regularExpression)
 
-        XCTAssertEqual(output, "Hello, world!\n")
+        XCTAssertEqual(errorString, outputError)
     }
 
     /// Returns path to the built products directory.
@@ -45,3 +40,29 @@ final class SwiftyProfilerTests: XCTestCase {
         ("testExample", testExample),
     ]
 }
+
+let errorString: String = """
+Error: Missing expected argument '<product-name>'
+
+USAGE: swifty-profiler <product-name> [--limit <limit>] [--threshold <threshold>] [--show-invalids] [--order <order>] [--derived-data-path <derived-data-path>] [--truncate-at <truncate-at>] [--no-unique]
+
+ARGUMENTS:
+  <product-name>          Product Name
+
+OPTIONS:
+  -l, --limit <limit>     Limit for display (default: 0)
+  --threshold <threshold> Threshold of time to display (ms) (default: 0)
+  --show-invalids         Show invalid location results
+  -o, --order <order>     Sort order (default: default)
+  --derived-data-path <derived-data-path>
+                          Root path of DerivedData directory
+  -t, --truncate-at <truncate-at>
+                          Truncate the method name with specified length
+                          (default: 0)
+  --no-unique             Show the duplicated results
+  --version               Show the version.
+  -h, --help              Show help information.
+
+
+"""
+.replacingOccurrences(of: "\\s", with: "", options: .regularExpression)
