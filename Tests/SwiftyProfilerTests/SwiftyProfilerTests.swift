@@ -7,7 +7,7 @@ final class SwiftyProfilerTests: XCTestCase {
             return
         }
 
-        let fooBinary = productsDirectory.appendingPathComponent("SwiftyProfiler")
+        let fooBinary = productsDirectory.appendingPathComponent("swprofiler")
         let process = Process()
         process.executableURL = fooBinary
         
@@ -43,7 +43,7 @@ final class SwiftyProfilerTests: XCTestCase {
 let errorString: String = """
 Error: Missing expected argument '<product-name>'
 
-USAGE: swifty-profiler <product-name> [--limit <limit>] [--threshold <threshold>] [--show-invalids] [--order <order>] [--derived-data-path <derived-data-path>] [--truncate-at <truncate-at>] [--no-unique]
+USAGE: swprofiler <product-name> [--limit <limit>] [--threshold <threshold>] [--show-invalids] [--order <order>] [--derived-data-path <derived-data-path>] [--truncate-at <truncate-at>] [--no-unique]
 
 ARGUMENTS:
   <product-name>          Product Name
