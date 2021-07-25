@@ -10,7 +10,7 @@ let package = Package(
     ],
     products: [
         .executable(
-            name: "SwiftyProfiler",
+            name: "swprofiler",
             targets: ["SwiftyProfiler"])
     ],
     dependencies: [

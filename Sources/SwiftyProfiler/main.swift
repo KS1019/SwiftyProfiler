@@ -3,7 +3,7 @@ import SwiftyXcActivityLog
 
 struct Profiler: ParsableCommand {
     static var configuration: CommandConfiguration = CommandConfiguration(
-        commandName: "swifty-profiler",
+        commandName: "swprofiler",
         abstract: "",
         discussion: "",
         version: "0.1.0",
