@@ -3,7 +3,7 @@ on:
     tags:
       - '*.*.*'
 
-name: Create Release
+name: Create and Publish Release
 
 jobs:
   build:
@@ -40,3 +40,16 @@ jobs:
             ${{ steps.get_commit_summary.outputs.COMMIT_SUMMARY }}
           draft: false
           prerelease: false
+  
+  formula:
+    name: Update Homebrew formula
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update the Homebrew formula with latest release
+        uses: NSHipster/update-homebrew-formula-action@main
+        with:
+          repository: KS1019/SwiftyProfiler
+          tap: KS1019/homebrew-formulae
+          formula: swprofiler.rb
+        env:
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
