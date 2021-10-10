@@ -2,18 +2,12 @@ on:
   push:
     branches:
       - main
-    tags:
-      - '[0-9]+.[0-9]+.[0-9]+'
-  pull_request:
-    branches-ignore:
-      - *
-    tags-ignore:
-      - *
 
 name: Create and Publish Release
 
 jobs:
   build:
+    if: startsWith(github.ref, 'refs/tags/v')
     name: Create Release
     runs-on: ubuntu-latest
     steps:
@@ -47,16 +41,3 @@ jobs:
             ${{ steps.get_commit_summary.outputs.COMMIT_SUMMARY }}
           draft: false
           prerelease: false
-  
-  formula:
-    name: Update Homebrew formula
-    runs-on: ubuntu-latest
-    steps:
-      - name: Update the Homebrew formula with latest release
-        uses: NSHipster/update-homebrew-formula-action@main
-        with:
-          repository: KS1019/SwiftyProfiler
-          tap: KS1019/homebrew-formulae
-          formula: swprofiler.rb
-        env:
-          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
