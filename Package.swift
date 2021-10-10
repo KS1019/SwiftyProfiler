@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "SwiftyXcActivityLog", url: "https://github.com/KS1019/SwiftyXcActivityLog", .upToNextMajor(from: "0.0.5")),
-        .package(name: "swift-argument-parser", url: "https://github.com/apple/swift-argument-parser", .upToNextMajor(from: "0.4.1")),
+        .package(name: "swift-argument-parser", url: "https://github.com/apple/swift-argument-parser", .upToNextMajor(from: "1.0.1")),
         .package(name: "SwiftyTextTable", url: "https://github.com/scottrhoyt/SwiftyTextTable", .upToNextMajor(from: "0.9.0"))
     ],
     targets: [
