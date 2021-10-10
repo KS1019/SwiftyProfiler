@@ -2,6 +2,8 @@ name: Swift Test
 
 on:
   push:
+    branches:
+      - main
     tags: "*.*.*"
 
 jobs:
