@@ -6,7 +6,7 @@ struct Profiler: ParsableCommand {
         commandName: "swprofiler",
         abstract: "",
         discussion: "",
-        version: "0.0.11",
+        version: "0.0.12",
         shouldDisplay: true,
         helpNames: [.long, .short]
     )
