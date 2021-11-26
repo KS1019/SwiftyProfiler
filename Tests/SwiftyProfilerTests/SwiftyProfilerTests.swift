@@ -34,10 +34,6 @@ final class SwiftyProfilerTests: XCTestCase {
         return Bundle.main.bundleURL
       #endif
     }
-
-    static var allTests = [
-        ("testExample", testExample),
-    ]
 }
 
 let errorString: String = """
